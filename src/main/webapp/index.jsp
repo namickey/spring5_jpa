@@ -8,7 +8,7 @@
 <body>
 
 <li>
-<ul><a href="bar/regist/index">regist</a></ul>
+<ul><a href="project/regist/index">regist</a></ul>
 </li>
 
 </body>

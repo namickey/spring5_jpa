@@ -2,11 +2,11 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 
-<form:form modelAttribute="registBarForm" action="regist">
+<form:form modelAttribute="projectForm" action="regist">
 <dl>
-  <dt>Bar名</dt>
+  <dt>Project名</dt>
   <dd>
-    <form:input path="barName" />
+    <form:input path="name" />
     <form:errors path="*"/><br/>
   </dd>
 </dl>

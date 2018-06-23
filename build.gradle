@@ -34,6 +34,7 @@ dependencies {
     compile ("org.slf4j:slf4j-nop:1.7.6")
     compile ("org.postgresql:postgresql:42.2.2")
     compileOnly ("javax.servlet:javax.servlet-api:3.1.0")
+    compileOnly ('org.projectlombok:lombok:1.16.20')
     def tomcatVersion = '8.0.38'
     tomcat "org.apache.tomcat.embed:tomcat-embed-core:${tomcatVersion}",
             "org.apache.tomcat.embed:tomcat-embed-logging-juli:${tomcatVersion}",

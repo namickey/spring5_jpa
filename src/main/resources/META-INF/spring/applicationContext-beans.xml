@@ -14,8 +14,6 @@
        http://www.springframework.org/schema/data/jpa
        http://www.springframework.org/schema/data/jpa/spring-jpa.xsd">
 
-
-
     <bean id="messageSource" class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
         <property name="basename" value="classpath:/META-INF/messages/messages"/>
     </bean>
@@ -29,7 +27,9 @@
         <property name="dataSource" ref="dataSource" />
         <property name="packagesToScan" value="demo.entity" />
         <property name="jpaVendorAdapter">
-            <bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter" />
+            <bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
+                <property name="showSql" value="true"/>
+            </bean>
         </property>
         <property name="jpaProperties">
             <props>
@@ -52,9 +52,6 @@
         <property name="entityManagerFactory" ref="entityManagerFactory" />
     </bean>
     <tx:annotation-driven />
-    <jpa:repositories base-package="demo.entity"/>
-
-    <bean id="persistenceExceptionTranslationPostProcessor" class=
-            "org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor" />
+    <jpa:repositories base-package="demo.repository"/>
 
 </beans>
