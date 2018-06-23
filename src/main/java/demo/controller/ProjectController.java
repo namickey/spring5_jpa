@@ -4,6 +4,7 @@ import javax.validation.Valid;
 
 import demo.entity.Project;
 import demo.repository.ProjectRepository;
+import demo.service.ProjectService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,15 +19,11 @@ import java.util.List;
 public class ProjectController {
 
     @Autowired
-    ProjectRepository projectRepository;
+    ProjectService projectService;
 
     @RequestMapping(value = "/project/regist/index", method = RequestMethod.GET)
     public String index(Model model){
-
-        List<Project> list = projectRepository.findAll();
-        for (Project a : list) {
-            System.out.println(a);
-        }
+        projectService.find();
 
         model.addAttribute("projectForm", new ProjectForm());
         return "project/regist";
@@ -39,9 +36,7 @@ public class ProjectController {
             return "project/regist";
         }
 
-        Project project = new Project();
-        project.setName(projectForm.getName());
-        projectRepository.saveAndFlush(project);
+        projectService.resist(projectForm.getName());
 
         return "redirect:index";
     }
