@@ -1,0 +1,44 @@
+apply plugin: 'java'
+apply plugin: 'war'
+apply plugin: 'com.bmuschko.tomcat'
+
+version '1.0'
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+buildscript {
+    repositories {
+        jcenter()
+    }
+
+    dependencies {
+        classpath 'com.bmuschko:gradle-tomcat-plugin:2.3'
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+tomcat{
+    contextPath = 'demo'
+}
+
+dependencies {
+    compile ("org.springframework:spring-webmvc:5.0.7.RELEASE")
+    compile ("org.springframework.data:spring-data-jpa:2.0.8.RELEASE")
+    compile ("org.hibernate:hibernate-entitymanager:5.3.1.Final")
+    compile ("org.hibernate.validator:hibernate-validator:6.0.10.Final")
+    compile ("javax.servlet:jstl:1.2")
+    compile ("org.slf4j:slf4j-nop:1.7.6")
+    compile ("org.postgresql:postgresql:42.2.2")
+    compileOnly ("javax.servlet:javax.servlet-api:3.1.0")
+    def tomcatVersion = '8.0.38'
+    tomcat "org.apache.tomcat.embed:tomcat-embed-core:${tomcatVersion}",
+            "org.apache.tomcat.embed:tomcat-embed-logging-juli:${tomcatVersion}",
+            "org.apache.tomcat.embed:tomcat-embed-jasper:${tomcatVersion}"
+}
+
+[tomcatRun, tomcatRunWar, tomcatStop]*.stopPort = 8090
+[tomcatRun, tomcatRunWar, tomcatStop]*.stopKey = 'foo'
