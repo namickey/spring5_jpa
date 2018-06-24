@@ -40,4 +40,16 @@ public class ProjectController {
 
         return "redirect:index";
     }
+
+    @RequestMapping(value = "/project/regist/registerror", method = RequestMethod.POST)
+    public String registError(@Valid @ModelAttribute("projectForm")ProjectForm projectForm, BindingResult result){
+
+        if(result.hasErrors()){
+            return "project/regist";
+        }
+
+        projectService.resistError(projectForm.getName());
+
+        return "redirect:index";
+    }
 }

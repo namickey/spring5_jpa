@@ -52,7 +52,7 @@
         <property name="entityManagerFactory" ref="entityManagerFactory" />
     </bean>
     <tx:annotation-driven />
-    <jpa:repositories base-package="demo.repository"/>
+    <jpa:repositories base-package="demo.repository" />
     <context:component-scan base-package="demo.service" />
 
 </beans>

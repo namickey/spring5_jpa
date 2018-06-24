@@ -12,3 +12,13 @@
 </dl>
 <button type="submit">登録</button>
 </form:form>
+<form:form modelAttribute="projectForm" action="registerror">
+<dl>
+  <dt>Project名</dt>
+  <dd>
+    <form:input path="name" />
+    <form:errors path="*"/><br/>
+  </dd>
+</dl>
+<button type="submit">登録エラー</button>
+</form:form>
