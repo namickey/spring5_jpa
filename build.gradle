@@ -19,6 +19,10 @@ buildscript {
 
 repositories {
     mavenCentral()
+    maven{
+        url "https://packages.atlassian.com/maven-3rdparty"
+    }
+
 }
 
 tomcat{
@@ -32,7 +36,7 @@ dependencies {
     compile ("org.hibernate.validator:hibernate-validator:6.0.10.Final")
     compile ("javax.servlet:jstl:1.2")
     compile ("org.slf4j:slf4j-nop:1.7.6")
-    compile ("org.postgresql:postgresql:42.2.2")
+    compile ("com.oracle:ojdbc6:12.1.0.1-atlassian-hosted")
     compileOnly ("javax.servlet:javax.servlet-api:3.1.0")
     compileOnly ('org.projectlombok:lombok:1.16.20')
     def tomcatVersion = '8.0.38'

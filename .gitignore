@@ -6,3 +6,7 @@ gradle/
 gradlew
 gradlew.bat
 out/
+/bin/
+/.settings/
+.classpath
+.project
