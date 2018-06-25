@@ -2,8 +2,6 @@ package demo.controller;
 
 import javax.validation.Valid;
 
-import demo.entity.Project;
-import demo.repository.ProjectRepository;
 import demo.service.ProjectService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -49,6 +47,18 @@ public class ProjectController {
         }
 
         projectService.resistError(projectForm.getName());
+
+        return "redirect:index";
+    }
+
+    @RequestMapping(value = "/project/regist/registchild", method = RequestMethod.POST)
+    public String registChild(@Valid @ModelAttribute("projectForm")ProjectForm projectForm, BindingResult result){
+
+        if(result.hasErrors()){
+            return "project/regist";
+        }
+
+        projectService.resistChild(projectForm.getName());
 
         return "redirect:index";
     }

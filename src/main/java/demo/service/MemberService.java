@@ -10,7 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 @Service
-public class MemberServiceImpl {
+public class MemberService {
 
     @Autowired
     MemberRepository memberRepository;
@@ -34,7 +34,7 @@ public class MemberServiceImpl {
     }
 
     public void find() {
-        List<Member> list = memberRepository.findAll();
+        List<Member> list = memberRepository.findJoin();
         for (Member member : list){
             System.out.println(member);
         }
