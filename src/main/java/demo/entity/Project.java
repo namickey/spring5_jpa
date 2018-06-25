@@ -4,6 +4,8 @@ import lombok.Data;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "PROJECT")
@@ -18,8 +20,6 @@ public class Project implements Serializable {
     @Column()
     private String name;
 
-    @Override
-    public String toString() {
-        return this.id + ", " + this.name;
-    }
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "project", fetch = FetchType.EAGER)
+    private List<Member> memberList = new ArrayList<>();
 }

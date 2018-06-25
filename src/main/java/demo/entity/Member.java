@@ -1,6 +1,7 @@
 package demo.entity;
 
 import lombok.Data;
+import lombok.ToString;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -8,6 +9,7 @@ import java.io.Serializable;
 @Entity
 @Table(name = "MEMBER")
 @Data
+@ToString(exclude = "project")
 public class Member implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -17,8 +19,7 @@ public class Member implements Serializable {
     @Column()
     private String name;
 
-    @Override
-    public String toString() {
-        return this.id + ", " + this.name;
-    }
+    @ManyToOne
+    @JoinColumn(name = "project_id")
+    private Project project;
 }
