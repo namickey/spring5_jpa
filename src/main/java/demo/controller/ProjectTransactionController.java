@@ -63,16 +63,4 @@ public class ProjectTransactionController {
 
         return "redirect:index";
     }
-
-    @RequestMapping(value = "/project/transaction/registchild", method = RequestMethod.POST)
-    public String registChild(@Valid @ModelAttribute("projectForm")ProjectForm projectForm, BindingResult result){
-
-        if(result.hasErrors()){
-            return "project/transaction";
-        }
-
-        projectService.resistChild(projectForm.getProjectName());
-
-        return "redirect:index";
-    }
 }

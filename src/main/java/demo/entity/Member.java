@@ -20,6 +20,6 @@ public class Member implements Serializable {
     private String name;
 
     @ManyToOne
-    @JoinColumn(name = "project_id")
+    @JoinColumn
     private Project project;
 }

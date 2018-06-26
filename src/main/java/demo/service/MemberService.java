@@ -15,6 +15,11 @@ public class MemberService {
     @Autowired
     MemberRepository memberRepository;
 
+    public void find() {
+        List<Member> list = memberRepository.findJoin();
+        list.forEach(System.out::println);
+    }
+
     @Transactional
     public void resist(String name) {
         Member member = new Member();
@@ -30,13 +35,6 @@ public class MemberService {
 
         if (name != null) {
             throw new RuntimeException("some error.");
-        }
-    }
-
-    public void find() {
-        List<Member> list = memberRepository.findJoin();
-        for (Member member : list){
-            System.out.println(member);
         }
     }
 }

@@ -9,6 +9,7 @@
 
 <li>
 <ul><a href="project/transaction/index">トランザクション検証</a></ul>
+<ul><a href="project/child/index">親子登録</a></ul>
 </li>
 
 </body>

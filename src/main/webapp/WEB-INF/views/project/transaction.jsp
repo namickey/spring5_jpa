@@ -39,15 +39,7 @@
 </dl>
 <button type="submit">登録時エラー発生（projectはコミット、memberはロールバック）</button>
 </form:form>
-<form:form modelAttribute="projectForm" action="registchild">
-<dl>
-  <dt>Project名</dt>
-  <dd>
-    <form:input path="projectName" />
-    <form:errors path="*"/><br/>
-  </dd>
-</dl>
-<button type="submit">子登録</button>
-</form:form>
+
+<a href="../../">Back to Top.</a>
 </body>
 </html>

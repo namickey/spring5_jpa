@@ -22,9 +22,7 @@ public class ProjectService {
 
     public void find() {
         List<Project> list = projectRepository.findJoin();
-        for (Project a : list) {
-            System.out.println(a);
-        }
+        list.forEach(System.out::println);
 
         memberService.find();
     }
@@ -52,13 +50,13 @@ public class ProjectService {
     }
 
     @Transactional
-    public void resistChild(String name) {
+    public void resistChild(String projectName, String memberName) {
         Project project = new Project();
-        project.setName(name);
+        project.setName(projectName);
 
         IntStream.range(0, 2).forEach(i -> {
             Member member = new Member();
-            member.setName(name+i);
+            member.setName(memberName+i);
             project.getMemberList().add(member);
             member.setProject(project);
         });
