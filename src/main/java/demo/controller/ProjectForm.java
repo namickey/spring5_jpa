@@ -7,6 +7,9 @@ import javax.validation.constraints.Size;
 @Data
 public class ProjectForm {
 
-	@Size(max = 20)
-    private String name;
+	@Size(max = 10)
+    private String projectName;
+
+	@Size(max = 10)
+    private String memberName;
 }

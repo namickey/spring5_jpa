@@ -9,6 +9,7 @@ import java.util.List;
 
 @Repository
 public interface MemberRepository extends JpaRepository<Member, Integer> {
-    @Query("select distinct m from Member m join fetch m.project p join fetch p.memberList order by m.id")
+
+    @Query("select distinct m from Member m left outer join fetch m.project p left outer join fetch p.memberList order by m.id")
     List<Member> findJoin();
 }

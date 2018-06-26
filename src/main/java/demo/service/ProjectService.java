@@ -20,49 +20,47 @@ public class ProjectService {
     @Autowired
     MemberService memberService;
 
-    @Transactional
-    public void resist(String name) {
-        Project project = new Project();
-        project.setName(name);
-        projectRepository.save(project);
+    public void find() {
+        List<Project> list = projectRepository.findJoin();
+        list.forEach(System.out::println);
 
-        memberService.resist(name + " mem");
+        memberService.find();
     }
 
     @Transactional
-    public void resistChild(String name) {
+    public void resist(String projectName, String memberName) {
         Project project = new Project();
-        project.setName(name);
-
-        IntStream.range(0, 2).forEach(i -> {
-            Member member = new Member();
-            member.setName(name+i);
-            project.getMemberList().add(member);
-            member.setProject(project);
-        });
-
+        project.setName(projectName);
         projectRepository.save(project);
+
+        memberService.resist(memberName);
     }
 
     @Transactional
-    public void resistError(String name) {
+    public void resistError(String projectName, String memberName) {
         Project project = new Project();
-        project.setName(name);
+        project.setName(projectName);
         projectRepository.save(project);
 
         try {
-            memberService.resistError(name + " mem");
+            memberService.resistError(memberName);
         } catch(RuntimeException e) {
             e.printStackTrace();
         }
     }
 
-    public void find() {
-        List<Project> list = projectRepository.findJoin();
-        for (Project a : list) {
-            System.out.println(a);
-        }
+    @Transactional
+    public void resistChild(String projectName, String memberName) {
+        Project project = new Project();
+        project.setName(projectName);
 
-        memberService.find();
+        IntStream.range(0, 2).forEach(i -> {
+            Member member = new Member();
+            member.setName(memberName+i);
+            project.getMemberList().add(member);
+            member.setProject(project);
+        });
+
+        projectRepository.save(project);
     }
 }
