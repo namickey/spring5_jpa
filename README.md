@@ -21,6 +21,7 @@
         │   └── demo
         │       ├── controller
         │       │   ├── ProjectForm.java
+        │       │   ├── ProjectParentAndChildController.java
         │       │   └── ProjectTransactionController.java
         │       ├── entity
         │       │   ├── Member.java
@@ -43,19 +44,27 @@
             ├── WEB-INF
             │   ├── views
             │   │   └── project
+            │   │       ├── parentAndChild.jsp
             │   │       └── transaction.jsp
             │   └── web.xml
             └── index.jsp
-
 ```
 ## Install gradle
 https://gradle.org/  
 
+Windows10にGradleをインストール  
+https://qiita.com/quwahara/items/9c4e5fbda421cfcb09ad  
+Gradle入門  
+https://qiita.com/vvakame/items/83366fbfa47562fafbf4  
+
 ## Setting Lombok
-https://projectlombok.org/
+https://projectlombok.org/  
+
+Eclipse：lombokインストール手順  
+https://web-dev.hatenablog.com/entry/eclipse/lombok  
 
 ## Execute Command
-Open the Command Prompt.
+Open the Command Prompt.  
 ```
 gradle tomcatRun
 ```
