@@ -20,13 +20,35 @@ public class ProjectService {
     @Autowired
     MemberService memberService;
 
+    public void find() {
+        List<Project> list = projectRepository.findJoin();
+        for (Project a : list) {
+            System.out.println(a);
+        }
+
+        memberService.find();
+    }
+
     @Transactional
-    public void resist(String name) {
+    public void resist(String projectName, String memberName) {
         Project project = new Project();
-        project.setName(name);
+        project.setName(projectName);
         projectRepository.save(project);
 
-        memberService.resist(name + " mem");
+        memberService.resist(memberName);
+    }
+
+    @Transactional
+    public void resistError(String projectName, String memberName) {
+        Project project = new Project();
+        project.setName(projectName);
+        projectRepository.save(project);
+
+        try {
+            memberService.resistError(memberName);
+        } catch(RuntimeException e) {
+            e.printStackTrace();
+        }
     }
 
     @Transactional
@@ -42,27 +64,5 @@ public class ProjectService {
         });
 
         projectRepository.save(project);
-    }
-
-    @Transactional
-    public void resistError(String name) {
-        Project project = new Project();
-        project.setName(name);
-        projectRepository.save(project);
-
-        try {
-            memberService.resistError(name + " mem");
-        } catch(RuntimeException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public void find() {
-        List<Project> list = projectRepository.findJoin();
-        for (Project a : list) {
-            System.out.println(a);
-        }
-
-        memberService.find();
     }
 }

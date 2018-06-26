@@ -8,7 +8,7 @@
 <body>
 
 <li>
-<ul><a href="project/regist/index">regist</a></ul>
+<ul><a href="project/transaction/index">トランザクション検証</a></ul>
 </li>
 
 </body>
