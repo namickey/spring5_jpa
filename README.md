@@ -79,7 +79,9 @@ https://www.casleyconsulting.co.jp/blog/engineer/107/
 ### for PostgreSQL
 * masterブランチをチェックアウト。  
 * masterブランチには、PostgreSQLへ接続設定済み。以下の接続情報は環境に合った内容に変更すること。  
-```https://github.com/namickey/spring5_jpa/blob/master/src/main/resources/META-INF/spring/applicationContext-beans.xml
+
+https://github.com/namickey/spring5_jpa/blob/master/src/main/resources/META-INF/spring/applicationContext-beans.xml
+```
 <property name="jpaProperties">
     <props>
         <prop key="hibernate.hbm2ddl.auto">create-drop</prop>
@@ -94,7 +96,8 @@ https://www.casleyconsulting.co.jp/blog/engineer/107/
 <property name="password" value="postgres" />
 ```
 
-```https://github.com/namickey/spring5_jpa/blob/master/build.gradle
+https://github.com/namickey/spring5_jpa/blob/master/build.gradle
+```
 compile ("org.postgresql:postgresql:42.2.2")
 ```
 
@@ -102,7 +105,9 @@ compile ("org.postgresql:postgresql:42.2.2")
 ### for Oracle
 * oracleブランチをチェックアウト。  
 * oracleブランチには、Oracleへ接続設定済み。以下の接続情報は環境に合った内容に変更すること。  
-```https://github.com/namickey/spring5_jpa/blob/oracle/src/main/resources/META-INF/spring/applicationContext-beans.xml
+
+https://github.com/namickey/spring5_jpa/blob/oracle/src/main/resources/META-INF/spring/applicationContext-beans.xml
+```
 <property name="jpaProperties">
     <props>
         <prop key="hibernate.hbm2ddl.auto">create-drop</prop>
@@ -117,7 +122,8 @@ compile ("org.postgresql:postgresql:42.2.2")
 <property name="password" value="sample" />
 ```
 
-```https://github.com/namickey/spring5_jpa/blob/oracle/build.gradle
+https://github.com/namickey/spring5_jpa/blob/oracle/build.gradle
+```
 compile ("com.oracle:ojdbc6:12.1.0.1-atlassian-hosted")
 ```
 
@@ -131,6 +137,8 @@ create-drop - セッションの開始と終了時にスキーマを自動的に
 ```
 
 * 組み込みTomcat起動時に定義されているEntityに合わせて、テーブルが作成される。組み込みTomcat停止時にはテーブルが削除される。
+
+https://github.com/namickey/spring5_jpa/blob/master/src/main/resources/META-INF/spring/applicationContext-beans.xml
 ```
 <property name="jpaProperties">
     <props>
