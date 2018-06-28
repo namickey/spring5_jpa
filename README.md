@@ -59,6 +59,9 @@
             │   └── web.xml
             └── index.jsp
 ```
+## Flow
+![フロー](koara.png)
+
 ## Install java
 * jdk8がインストールされていること  
 
