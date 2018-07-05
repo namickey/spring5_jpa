@@ -10,6 +10,7 @@
 <ul>
 <li><a href="project/transaction/index">トランザクション検証</a></li>
 <li><a href="project/child/index">親子登録</a></li>
+<li><a href="project">REST</a></li>
 </ul>
 
 </body>
