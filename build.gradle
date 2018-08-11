@@ -39,6 +39,7 @@ dependencies {
     compile ("javax.servlet:jstl:1.2")
     compile ("org.slf4j:slf4j-nop:1.7.6")
     compile ("com.oracle:ojdbc6:12.1.0.1-atlassian-hosted")
+    compile ("org.apache.commons:commons-dbcp2:2.5.0")
     compileOnly ("javax.servlet:javax.servlet-api:3.1.0")
     compileOnly ('org.projectlombok:lombok:1.16.20')
     def tomcatVersion = '8.0.38'
