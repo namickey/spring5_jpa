@@ -23,13 +23,20 @@ public class ProjectService {
     @Autowired
     MemberService memberService;
 
-    public void find() {
+    @Transactional
+    public List<Project> find() {
         List<Project> list = projectRepository.findJoin();
         list.forEach(System.out::println);
-
+        try {
+            Thread.sleep(500);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         memberService.find();
+        return list;
     }
 
+    @Transactional
     public List<ProjectDto> getList(){
 
         List<ProjectDto> list = new ArrayList<>();
