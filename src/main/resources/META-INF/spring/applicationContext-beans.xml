@@ -45,7 +45,12 @@
         <property name="url" value="jdbc:oracle:thin:@localhost:1521:seino" />
         <property name="username" value="sample" />
         <property name="password" value="sample" />
-        <property name="maxTotal" value="10" />
+        <property name="validationQuery" value="SELECT 1 FROM DUAL" />
+        <property name="minEvictableIdleTimeMillis" value="10000" />
+        <property name="initialSize" value="10" />
+        <property name="maxTotal" value="30" />
+        <property name="maxIdle" value="30" />
+        <property name="minIdle" value="10" />
     </bean>
 
     <bean id="transactionManager"

@@ -1,9 +1,13 @@
 package demo.service;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.IntStream;
 
+import groovy.util.GroovyScriptEngine;
+import groovy.util.ResourceException;
+import groovy.util.ScriptException;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -27,12 +31,34 @@ public class ProjectService {
     public List<Project> find() {
         List<Project> list = projectRepository.findJoin();
         list.forEach(System.out::println);
+        List<Project> list2 = projectRepository.findJoin();
+        list2.forEach(System.out::println);
+
         try {
-            Thread.sleep(500);
-        } catch (InterruptedException e) {
+            GroovyScriptEngine gse = new GroovyScriptEngine("/home/dai/seino");
+            gse.run("requestOne.groovy", "");
+//            import groovyx.net.http.HTTPBuilder
+//            println "hello world!!"
+//            def http = new HTTPBuilder('http://localhost:8080')
+//
+//            http.get([path : '/demo/project']) { resp, reader ->
+//                    println(reader)
+//            }
+            try {
+                Thread.sleep(500);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ResourceException e) {
+            e.printStackTrace();
+        } catch (ScriptException e) {
             e.printStackTrace();
         }
-        memberService.find();
+
+        List<Member> memlist = memberService.find();
+        memlist.forEach(System.out::println);
         return list;
     }
 
