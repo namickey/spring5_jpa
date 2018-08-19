@@ -49,19 +49,21 @@ public class ProjectService {
         list2.forEach(System.out::println);
 
         try {
-            GroovyScriptEngine gse = new GroovyScriptEngine(".");
-            if(script == null){
-                script = gse.createScript("requestOneSafe.groovy",makeBind("a","b"));
-            }
+            GroovyScriptEngine gse = new GroovyScriptEngine("/home/dai/github/spring5_jpa");
+            gse.run("requestOne.groovy", makeBind("a","b"));
+
+//            if(script == null){
+//                script = gse.createScript("requestOneSafe.groovy",makeBind("a","b"));
+//            }
 
             //run();
 
-            script.setBinding(makeBind("a", "b"));
-            script.run();
-            script.setBinding(makeBind("c", "d"));
-            script.run();
-            script.setBinding(makeBind("e", "f"));
-            script.run();
+//            script.setBinding(makeBind("a", "b"));
+//            script.run();
+//            script.setBinding(makeBind("c", "d"));
+//            script.run();
+//            script.setBinding(makeBind("e", "f"));
+//            script.run();
 
 //            import groovyx.net.http.HTTPBuilder
 //            println "hello world!!"
@@ -70,6 +72,11 @@ public class ProjectService {
 //            http.get([path : '/demo/project']) { resp, reader ->
 //                    println(reader)
 //            }
+            try {
+                Thread.sleep(300);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
 
         } catch (IOException e) {
             e.printStackTrace();
