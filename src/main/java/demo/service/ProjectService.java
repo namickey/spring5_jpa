@@ -3,8 +3,11 @@ package demo.service;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.stream.IntStream;
 
+import groovy.lang.Binding;
+import groovy.lang.Script;
 import groovy.util.GroovyScriptEngine;
 import groovy.util.ResourceException;
 import groovy.util.ScriptException;
@@ -21,11 +24,22 @@ import demo.repository.ProjectRepository;
 @Service
 public class ProjectService {
 
+    private Script script;
+
     @Autowired
     ProjectRepository projectRepository;
 
     @Autowired
     MemberService memberService;
+
+    private synchronized void run(){
+        script.setBinding(makeBind("a", "b"));
+        script.run();
+        script.setBinding(makeBind("c", "d"));
+        script.run();
+        script.setBinding(makeBind("e", "f"));
+        script.run();
+    }
 
     @Transactional
     public List<Project> find() {
@@ -35,8 +49,20 @@ public class ProjectService {
         list2.forEach(System.out::println);
 
         try {
-            GroovyScriptEngine gse = new GroovyScriptEngine("/home/dai/seino");
-            gse.run("requestOne.groovy", "");
+            GroovyScriptEngine gse = new GroovyScriptEngine(".");
+            if(script == null){
+                script = gse.createScript("requestOneSafe.groovy",makeBind("a","b"));
+            }
+
+            //run();
+
+            script.setBinding(makeBind("a", "b"));
+            script.run();
+            script.setBinding(makeBind("c", "d"));
+            script.run();
+            script.setBinding(makeBind("e", "f"));
+            script.run();
+
 //            import groovyx.net.http.HTTPBuilder
 //            println "hello world!!"
 //            def http = new HTTPBuilder('http://localhost:8080')
@@ -44,11 +70,7 @@ public class ProjectService {
 //            http.get([path : '/demo/project']) { resp, reader ->
 //                    println(reader)
 //            }
-            try {
-                Thread.sleep(500);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
+
         } catch (IOException e) {
             e.printStackTrace();
         } catch (ResourceException e) {
@@ -60,6 +82,15 @@ public class ProjectService {
         List<Member> memlist = memberService.find();
         memlist.forEach(System.out::println);
         return list;
+    }
+
+    private Binding makeBind(String str, String para){
+
+        Binding bind =  new Binding();
+        //Binding bind =  new Binding(new ConcurrentHashMap());
+        bind.setVariable("a", str);
+        bind.setProperty("b", para);
+        return bind;
     }
 
     @Transactional
