@@ -62,6 +62,20 @@
 ## Flow
 ![フロー](koara.png)
 
+## 環境
+基本的には以下の4つがあれば起動する。  
+※組み込みTomcatを使うので、事前にTomcatをインストールする必要無し。  
+### 起動
+* java  
+* gradle  
+* cloneしたspring5_jpaプロジェクト  
+* database(postgreSQL or Oracle)※databaseも組み込みDBにすれば、事前インストールの必要は無いが、今回は必要。  
+
+### ツール、開発環境など  
+* GitBash  
+* Eclipse  
+
+
 ## Install java
 * jdk8がインストールされていること  
 
@@ -73,16 +87,21 @@ https://qiita.com/quwahara/items/9c4e5fbda421cfcb09ad
 Gradle入門  
 https://qiita.com/vvakame/items/83366fbfa47562fafbf4  
 
-## Install and Setting Lombok
-https://projectlombok.org/  
+プロキシ環境で作業する場合は、以下を参考にプロキシ設定する  
 
-Eclipse：lombokインストール手順  
-https://web-dev.hatenablog.com/entry/eclipse/lombok  
-【Java】Lombokで冗長コードを削減しよう  
-https://www.casleyconsulting.co.jp/blog/engineer/107/  
+gradleのプロキシ設定  
+https://qiita.com/koooge/items/294e6a1000d99d92ae72  
+
+## Install gitbash
+
+自分用 Git For Windowsのインストール手順  
+https://qiita.com/toshi-click/items/dcf3dd48fdc74c91b409  
+
 
 ## Clone Github repository
+Open the Command Prompt.  
 ```
+任意のディレクトリで、以下コマンドを実行する。
 git clone https://github.com/namickey/spring5_jpa.git
 ```
 
@@ -138,8 +157,8 @@ https://github.com/namickey/spring5_jpa/blob/oracle/build.gradle
 compile ("com.oracle:ojdbc6:12.1.0.1-atlassian-hosted")
 ```
 
-## jpaProperties
-* 組み込みTomcat起動時に定義されているEntityに合わせて、テーブルが作成される。  
+## 参考：jpaPropertiesについて
+* 「hibernate.hbm2ddl.auto」の機能によって、組み込みTomcat起動時に定義されているEntityに合わせて、テーブルが作成される。  
 * 組み込みTomcat停止時にはテーブルが削除される。  
 
 https://github.com/namickey/spring5_jpa/blob/master/src/main/resources/META-INF/spring/applicationContext-beans.xml
@@ -160,14 +179,6 @@ validate - 既存のスキーマを検証する
 create-drop - セッションの開始と終了時にスキーマを自動的に作成して削除する
 ```
 
-## No install Tomcat
-組み込みTomcatを使うので、事前にTomcatをインストールする必要無し。  
-基本的には以下の4つがあれば起動する。  
-* java  
-* gradle  
-* cloneしたspring5_jpaプロジェクト  
-* database(postgreSQL or Oracle)※databaseも組み込みDBにすれば、事前インストールの必要は無いが、今回は必要。  
-
 ## Start Command
 Open the Command Prompt.  
 ```
@@ -184,6 +195,14 @@ http://localhost:8080/demo
 ```
 Ctrl + C
 ```
+
+## Install and Setting Lombok
+https://projectlombok.org/  
+
+Eclipse：lombokインストール手順  
+https://web-dev.hatenablog.com/entry/eclipse/lombok  
+【Java】Lombokで冗長コードを削減しよう  
+https://www.casleyconsulting.co.jp/blog/engineer/107/  
 
 ## Import to Eclipse
 Eclipseにインポートして、開発を始めよう。  
