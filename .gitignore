@@ -10,3 +10,7 @@ out/
 /.settings/
 .classpath
 .project
+lombok.config
+start-tomcat.sh
+db-start.sh
+docker-compose.yaml

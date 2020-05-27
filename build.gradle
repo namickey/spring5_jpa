@@ -1,51 +1,51 @@
-apply plugin: 'java'
-apply plugin: 'war'
-apply plugin: 'com.bmuschko.tomcat'
-
-version '1.0'
-
-sourceCompatibility = 1.8
-targetCompatibility = 1.8
-
 buildscript {
     repositories {
         jcenter()
+        maven {
+            url "https://plugins.gradle.org/m2/"
+        }
     }
 
     dependencies {
-        classpath 'com.bmuschko:gradle-tomcat-plugin:2.3'
+        classpath 'com.bmuschko:gradle-tomcat-plugin:2.5'
+        classpath "io.freefair.gradle:lombok-plugin:5.1.0"
     }
 }
+
+apply plugin: 'java'
+apply plugin: 'war'
+apply plugin: 'com.bmuschko.tomcat'
+apply plugin: "io.freefair.lombok"
+
+version '1.0'
+sourceCompatibility = '11'
 
 repositories {
     mavenCentral()
-    maven{
-        url "https://packages.atlassian.com/maven-3rdparty"
-    }
-
 }
 
-tomcat{
+tomcat {
+    httpProtocol = 'org.apache.coyote.http11.Http11Nio2Protocol'
+    ajpProtocol  = 'org.apache.coyote.ajp.AjpNio2Protocol'
     httpPort = 8080
     contextPath = 'demo'
 }
 
 dependencies {
-    compile ("org.springframework:spring-webmvc:5.0.7.RELEASE")
-    compile ("org.springframework.data:spring-data-jpa:2.0.8.RELEASE")
-    compile ("org.hibernate:hibernate-entitymanager:5.3.1.Final")
-    compile ("org.hibernate.validator:hibernate-validator:6.0.10.Final")
-    compile ("com.fasterxml.jackson.core:jackson-databind:2.9.5")
-    compile ("javax.servlet:jstl:1.2")
-    compile ("org.slf4j:slf4j-nop:1.7.6")
-    compile ("org.postgresql:postgresql:42.2.2")
-    compileOnly ("javax.servlet:javax.servlet-api:3.1.0")
-    compileOnly ('org.projectlombok:lombok:1.16.20')
-    def tomcatVersion = '8.0.38'
+    implementation 'javax.xml.bind:jaxb-api:2.3.0'
+    implementation 'com.sun.xml.bind:jaxb-core:2.3.0'
+    implementation 'com.sun.xml.bind:jaxb-impl:2.3.0'
+    implementation 'org.springframework:spring-webmvc:5.2.6.RELEASE'
+    implementation 'org.springframework.data:spring-data-jpa:2.3.0.RELEASE'
+    implementation 'org.hibernate:hibernate-entitymanager:5.4.16.Final'
+    implementation 'org.hibernate.validator:hibernate-validator:6.1.5.Final'
+    implementation 'com.fasterxml.jackson.core:jackson-databind:2.11.0'
+    implementation 'javax.servlet:jstl:1.2'
+    implementation 'org.slf4j:slf4j-nop:1.7.30'
+    implementation 'org.postgresql:postgresql:42.2.12'
+    compileOnly 'javax.servlet:javax.servlet-api:3.1.0'
+    def tomcatVersion = '9.0.30'
     tomcat "org.apache.tomcat.embed:tomcat-embed-core:${tomcatVersion}",
-            "org.apache.tomcat.embed:tomcat-embed-logging-juli:${tomcatVersion}",
+            "org.apache.tomcat.embed:tomcat-embed-logging-juli:9.0.0.M6",
             "org.apache.tomcat.embed:tomcat-embed-jasper:${tomcatVersion}"
 }
-
-[tomcatRun, tomcatRunWar, tomcatStop]*.stopPort = 8090
-[tomcatRun, tomcatRunWar, tomcatStop]*.stopKey = 'foo'
