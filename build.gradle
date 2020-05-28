@@ -2,20 +2,20 @@ buildscript {
     repositories {
         jcenter()
         maven {
-            url "https://plugins.gradle.org/m2/"
+            url 'https://plugins.gradle.org/m2/'
         }
     }
 
     dependencies {
         classpath 'com.bmuschko:gradle-tomcat-plugin:2.5'
-        classpath "io.freefair.gradle:lombok-plugin:5.1.0"
+        classpath 'io.freefair.gradle:lombok-plugin:5.1.0'
     }
 }
 
 apply plugin: 'java'
 apply plugin: 'war'
 apply plugin: 'com.bmuschko.tomcat'
-apply plugin: "io.freefair.lombok"
+apply plugin: 'io.freefair.lombok'
 
 version '1.0'
 sourceCompatibility = '11'
@@ -32,9 +32,6 @@ tomcat {
 }
 
 dependencies {
-    implementation 'javax.xml.bind:jaxb-api:2.3.0'
-    implementation 'com.sun.xml.bind:jaxb-core:2.3.0'
-    implementation 'com.sun.xml.bind:jaxb-impl:2.3.0'
     implementation 'org.springframework:spring-webmvc:5.2.6.RELEASE'
     implementation 'org.springframework.data:spring-data-jpa:2.3.0.RELEASE'
     implementation 'org.hibernate:hibernate-entitymanager:5.4.16.Final'
@@ -45,7 +42,7 @@ dependencies {
     implementation 'org.postgresql:postgresql:42.2.12'
     compileOnly 'javax.servlet:javax.servlet-api:3.1.0'
     def tomcatVersion = '9.0.30'
-    tomcat "org.apache.tomcat.embed:tomcat-embed-core:${tomcatVersion}",
-            "org.apache.tomcat.embed:tomcat-embed-logging-juli:9.0.0.M6",
-            "org.apache.tomcat.embed:tomcat-embed-jasper:${tomcatVersion}"
+    tomcat 'org.apache.tomcat.embed:tomcat-embed-core:${tomcatVersion}',
+            'org.apache.tomcat.embed:tomcat-embed-logging-juli:9.0.0.M6',
+            'org.apache.tomcat.embed:tomcat-embed-jasper:${tomcatVersion}'
 }

@@ -11,15 +11,24 @@
 * etc  
 
 ## Dependencies
-* org.springframework:spring-webmvc:5.0.7.RELEASE  
-* org.springframework.data:spring-data-jpa:2.0.8.RELEASE  
-* org.hibernate:hibernate-entitymanager:5.3.1.Final  
-* org.hibernate.validator:hibernate-validator:6.0.10.Final  
+* org.springframework:spring-webmvc:5.2.6.RELEASE  
+* org.springframework.data:spring-data-jpa:2.3.0.RELEASE  
+* org.hibernate:hibernate-entitymanager:5.4.16.Final  
+* org.hibernate.validator:hibernate-validator:6.1.5.Final  
+* com.fasterxml.jackson.core:jackson-databind:2.11.0  
 * javax.servlet:jstl:1.2  
-* org.slf4j:slf4j-nop:1.7.6  
-* org.postgresql:postgresql:42.2.2  
+* org.slf4j:slf4j-nop:1.7.30  
+* org.postgresql:postgresql:42.2.12  
 * javax.servlet:javax.servlet-api:3.1.0  
-* org.projectlombok:lombok:1.16.20  
+
+## Plugin
+* com.bmuschko:gradle-tomcat-plugin:2.5  
+* io.freefair.gradle:lombok-plugin:5.1.0  
+
+## Environment
+* JDK 11
+* PostgreSQL 11
+* Tomcat 9
 
 ## Tree
 ```
@@ -32,7 +41,10 @@
         │       ├── controller
         │       │   ├── ProjectForm.java
         │       │   ├── ProjectParentAndChildController.java
-        │       │   └── ProjectTransactionController.java
+        │       │   ├── ProjectTransactionController.java
+        │       │   └── RestProjectController.java
+        │       ├── dto
+        │       │   └── ProjectDto.java
         │       ├── entity
         │       │   ├── Member.java
         │       │   └── Project.java
@@ -65,21 +77,42 @@
 ## 環境
 基本的には以下の4つがあれば起動する。  
 ※組み込みTomcatを使うので、事前にTomcatをインストールする必要無し。  
-### 起動
-* java  
-* gradle  
-* cloneしたspring5_jpaプロジェクト  
-* database(postgreSQL or Oracle)※databaseも組み込みDBにすれば、事前インストールの必要は無いが、今回は必要。  
+
+* cloneしたこのspring5_jpaプロジェクト  
+* JDK 11 ※OpenJDKでも、OracleJDkでもOK  
+* PostgreSQL 11 ※OracleでもOK。Oracle用の接続設定は別ブランチにあり  
+* gradle 6系 ※gradlewラッパーでもOK  
 
 ### ツール、開発環境など  
 * GitBash  
-* Eclipse  
+* IntelliJ IDEA Community版  ※Pleiades All in OneでもOK  
 
 
 ## Install java
-* jdk8がインストールされていること  
+* JDK 11がインストールされていること  
 
-## Install gradle
+OpenJDK11のインストール方法メモ  
+https://qiita.com/shibafu/items/8762636f66d7fef49d59  
+
+## Install PostgreSQL
+* PostgreSQL 11がインストールされていること  
+
+PostgreSQLをWindowsにインストールする方法  
+https://intellectual-curiosity.tokyo/2019/04/11/postgresql%E3%82%92windows%E3%81%AB%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB%E3%81%99%E3%82%8B%E6%96%B9%E6%B3%95/  
+
+Dockerを使ってPostgreSQLを立て、テーブルを作成する。  
+https://swiswiswift.com/2019-11-22/  
+
+## Install IntelliJ IDEA
+* IntelliJ IDEA Community版がインストールされていること  
+
+IntelliJ IDEAをインストールする  
+https://pleiades.io/help/idea/installation-guide.html  
+
+
+## Install Gradle
+※IntelliJにプロジェクトをimportする際に、勝手にGradlewラッパーが入るので、Gradleのインストールは不要かも。  
+
 https://gradle.org/  
 
 Windows10にGradleをインストール  
@@ -97,13 +130,27 @@ https://qiita.com/koooge/items/294e6a1000d99d92ae72
 自分用 Git For Windowsのインストール手順  
 https://qiita.com/toshi-click/items/dcf3dd48fdc74c91b409  
 
-
 ## Clone Github repository
 Open the Command Prompt.  
 ```
 任意のディレクトリで、以下コマンドを実行する。
 git clone https://github.com/namickey/spring5_jpa.git
 ```
+
+## Import to Eclipse
+Eclipseにインポートして、開発を始めよう。  
+
+GradleプロジェクトをEclipse、IntelliJ IDEA両対応で開発する  
+https://qiita.com/grachro/items/cb169b9da433ea038cad#eclipse-%E3%81%B8%E3%83%97%E3%83%AD%E3%82%B8%E3%82%A7%E3%82%AF%E3%83%88%E3%82%92%E3%82%A4%E3%83%B3%E3%83%9D%E3%83%BC%E3%83%88  
+
+## Install and Setting Lombok
+https://projectlombok.org/  
+
+Eclipse：lombokインストール手順  
+https://web-dev.hatenablog.com/entry/eclipse/lombok  
+【Java】Lombokで冗長コードを削減しよう  
+https://www.casleyconsulting.co.jp/blog/engineer/107/  
+
 
 ## Setting Database
 ### for PostgreSQL
@@ -194,22 +241,10 @@ http://localhost:8080/demo
 ## Stop Command
 ```
 Ctrl + C
+
+※どうしても停止させてもバックグラウンドでJAVAプロセスが残って、8080ポートをつかんだままになる。
+その場合は、そのJAVAプロセスをKILLする必要あり。
 ```
-
-## Install and Setting Lombok
-https://projectlombok.org/  
-
-Eclipse：lombokインストール手順  
-https://web-dev.hatenablog.com/entry/eclipse/lombok  
-【Java】Lombokで冗長コードを削減しよう  
-https://www.casleyconsulting.co.jp/blog/engineer/107/  
-
-## Import to Eclipse
-Eclipseにインポートして、開発を始めよう。  
-
-GradleプロジェクトをEclipse、IntelliJ IDEA両対応で開発する  
-https://qiita.com/grachro/items/cb169b9da433ea038cad#eclipse-%E3%81%B8%E3%83%97%E3%83%AD%E3%82%B8%E3%82%A7%E3%82%AF%E3%83%88%E3%82%92%E3%82%A4%E3%83%B3%E3%83%9D%E3%83%BC%E3%83%88  
-
 
 ## Let's challenge ! !
 * 自分のgitアカウントにプロジェクトを作成して、写経する。  
