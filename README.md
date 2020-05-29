@@ -22,13 +22,13 @@
 * javax.servlet:javax.servlet-api:3.1.0  
 
 ## Plugin
-* com.bmuschko:gradle-tomcat-plugin:2.5  
-* io.freefair.gradle:lombok-plugin:5.1.0  
+* "org.gretty" version "3.0.3"  
+* "io.freefair.lombok" version "5.1.0"  
 
 ## Environment
 * JDK 11
 * PostgreSQL 11
-* Tomcat 9
+* Jetty 9
 
 ## Tree
 ```
@@ -39,6 +39,7 @@
         ├── java
         │   └── demo
         │       ├── controller
+        │       │   ├── IndexController.java
         │       │   ├── ProjectForm.java
         │       │   ├── ProjectParentAndChildController.java
         │       │   ├── ProjectTransactionController.java
@@ -76,7 +77,6 @@
 
 ## 環境
 基本的には以下の4つがあれば起動する。  
-※組み込みTomcatを使うので、事前にTomcatをインストールする必要無し。  
 
 * cloneしたこのspring5_jpaプロジェクト  
 * JDK 11 ※OpenJDKでも、OracleJDkでもOK  
@@ -86,7 +86,6 @@
 ### ツール、開発環境など  
 * GitBash  
 * IntelliJ IDEA Community版  ※Pleiades All in OneでもOK  
-
 
 ## Install java
 * JDK 11がインストールされていること  
@@ -233,17 +232,17 @@ Open the Command Prompt.
 cd spring5_jpa
 ```
 ```
-gradle tomcatRun
+gradle appRun
+
+gradlewラッパーの場合、
+./gradlew appRun
 ```
 ブラウザで以下のURLにアクセスする。  
 http://localhost:8080/demo  
 
 ## Stop Command
 ```
-Ctrl + C
-
-※どうしても停止させてもバックグラウンドでJAVAプロセスが残って、8080ポートをつかんだままになる。
-その場合は、そのJAVAプロセスをKILLする必要あり。
+Press any key to stop the server.
 ```
 
 ## Let's challenge ! !
