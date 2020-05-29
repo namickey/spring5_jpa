@@ -11,6 +11,6 @@ out/
 .classpath
 .project
 lombok.config
-start-tomcat.sh
+start-jetty.sh
 db-start.sh
 docker-compose.yaml
