@@ -34,9 +34,9 @@ public class ProjectService {
 
         List<ProjectDto> list = new ArrayList<>();
 
-        projectRepository.findAll().forEach(projectDto ->{
+        projectRepository.findAll().forEach(project ->{
             ProjectDto dto = new ProjectDto();
-            BeanUtils.copyProperties(projectDto, dto);
+            BeanUtils.copyProperties(project, dto);
             list.add(dto);
         });
 
