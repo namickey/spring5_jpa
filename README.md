@@ -11,19 +11,19 @@
 * etc  
 
 ## Dependencies
-* org.springframework:spring-webmvc:5.2.6.RELEASE  
-* org.springframework.data:spring-data-jpa:2.3.0.RELEASE  
-* org.hibernate:hibernate-entitymanager:5.4.16.Final  
-* org.hibernate.validator:hibernate-validator:6.1.5.Final  
-* com.fasterxml.jackson.core:jackson-databind:2.11.0  
+* org.springframework:spring-webmvc:5.3.10  
+* org.springframework.data:spring-data-jpa:2.5.5  
+* org.hibernate:hibernate-entitymanager:5.5.7.Final  
+* org.hibernate.validator:hibernate-validator:6.2.0.Final  
+* com.fasterxml.jackson.core:jackson-databind:2.13.0  
 * javax.servlet:jstl:1.2  
-* org.slf4j:slf4j-nop:1.7.30  
-* org.postgresql:postgresql:42.2.12  
+* org.slf4j:slf4j-nop:1.7.32  
+* org.postgresql:postgresql:42.2.24  
 * javax.servlet:javax.servlet-api:3.1.0  
 
 ## Plugin
-* "org.gretty" version "3.0.3"  
-* "io.freefair.lombok" version "5.1.0"  
+* "org.gretty" version "3.0.6"  
+* "io.freefair.lombok" version "6.2.0"  
 
 ## Environment
 * JDK 11
